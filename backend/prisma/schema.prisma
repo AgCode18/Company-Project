@@ -21,15 +21,17 @@ model Admin {
 }
 
 model Blog {
-  id               String    @id @default(uuid())
-  title             String
-  content            String    @unique
-  
-  resetToken       String?
-  resetTokenExpiry DateTime?
-  createdAt        DateTime  @default(now()) @map("created_at")
-  updatedAt        DateTime  @updatedAt
+  id          String   @id @default(uuid())
+  title       String 
+  slug        String   @unique    // : if the blog title is My First Post, the slug might be my-first-post, and you can use it in URLs like /blog/my-first-post.
+  excerpt     String?  @db.Text
+  content     String   @db.LongText
+  coverImage  String?
+  published   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 
+  @@map("blogs")
 }
 
 
