@@ -185,17 +185,16 @@ function WWD() {
 
               <ul className="space-y-5 mt-10">
 
-                <li>✅ Experienced Development Team</li>
+                <li> Experienced Development Team</li>
 
-                <li>✅ Modern Technologies & Frameworks</li>
+                <li> Modern Technologies & Frameworks</li>
 
-                <li>✅ Agile Development Process</li>
+                <li> Agile Development Process</li>
+                <li> Dedicated Support & Maintenance</li>
 
-                <li>✅ Dedicated Support & Maintenance</li>
+                <li>SEO & Performance Optimized Solutions</li>
 
-                <li>✅ SEO & Performance Optimized Solutions</li>
-
-                <li>✅ Enterprise Grade Security</li>
+                <li>Enterprise Grade Security</li>
 
               </ul>
             </div>
