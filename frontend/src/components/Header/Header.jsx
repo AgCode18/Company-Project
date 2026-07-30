@@ -4,7 +4,7 @@ const DEFAULT_VIDEO_SRC =
   "https://www.infosys.com//content/dam/infosys-web/en/hero-video/leon-navigate-ai.mp4";
 
 const navLinks = [
-  { to: "/", label: "Navigate your next", end: true },
+  { to: "/", label: "Home", end: true },
   { to: "/services", label: "Services" },
   { to: "/about", label: "About Us" },
   { to: "/blog", label: "Blog" },

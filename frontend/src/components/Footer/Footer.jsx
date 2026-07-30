@@ -44,7 +44,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-2 py-5">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Subsidiaries */}
-
+{/* 
           <div>
             <h3 className="text-2xl font-medium text-[#2d3f7c] mb-8">
               Subsidiaries
@@ -72,10 +72,10 @@ export default function Footer() {
                 </AnimatedLink>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Programs */}
-          <div>
+          {/* <div>
             <h3 className="text-2xl font-medium text-[#2d3f7c] mb-8">
               Programs
             </h3>
@@ -101,7 +101,7 @@ export default function Footer() {
                 </AnimatedLink>
               </li>
             </ul>
-          </div>
+          </div> */}
 
           {/* Company */}
           <div>
@@ -118,7 +118,7 @@ export default function Footer() {
               </li>
               <li>
                 <AnimatedLink to="/navigate-next">
-                  Navigate your next
+                  Home
                 </AnimatedLink>
               </li>
               <li>
