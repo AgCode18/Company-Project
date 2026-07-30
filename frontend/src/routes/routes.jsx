@@ -29,7 +29,7 @@ export const createRouter = () => {
           <Route path="contact" element={<Contactus />} />
           <Route path="pricingcontact" element={<Contactus />} />
           <Route path="pricing" element={<Pricing />} />
-          <Route path="career" element={<Career />} />
+          <Route path="careers" element={<Career />} />
           <Route path="whatwedo" element={<WWD />} />
         </Route>
 
