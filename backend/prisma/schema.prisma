@@ -7,29 +7,33 @@ datasource db {
   provider = "mysql"
 }
 
-model Admin {
-  id               String    @id @default(uuid())
-  name             String
-  email            String    @unique
-  password         String
-  resetToken       String?
-  resetTokenExpiry DateTime?
-  createdAt        DateTime  @default(now()) @map("created_at")
-  updatedAt        DateTime  @updatedAt
+enum UserRole {
+  SUPER_ADMIN
+  ADMIN
+}
 
-  @@map("admin")
+model User {
+  id       String   @id @default(cuid())
+  name     String
+  email    String   @unique
+  password String
+  role     UserRole @default(ADMIN)
+  isActive Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Blog {
-  id String @id @default(uuid())
-  title String
-  slug  String @unique
-  excerpt String? @db.Text
-  content String  @db.LongText
+  id         String   @id @default(uuid())
+  title      String
+  slug       String   @unique
+  excerpt    String?  @db.Text
+  content    String   @db.LongText
   coverImage String?
-  published Boolean @default(false)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  published  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
 
   @@map("blogs")
 }

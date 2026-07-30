@@ -4,14 +4,15 @@ export const verifyAdmin = (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader) {
+    if (!authHeader.startWith("Bearer ")) {
       return res.status(401).json({
         success: false,
-        message: "No token provided",
+        message: "Invalid authorization header",
       });
     }
 
     const token = authHeader.split(" ")[1];
+
 
     const decoded = jwt.verify(
       token,

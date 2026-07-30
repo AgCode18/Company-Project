@@ -14,6 +14,7 @@ import Contactus from "../pages/Contactus.jsx";
 import Pricing from "../pages/Pricing.jsx";
 import Career from "../pages/Career.jsx";
 import WWD from "../pages/WWD.jsx";
+import AdminLayout from "../layouts/AdminLayout.jsx";
 
 
 export const createRouter = () => {
@@ -34,8 +35,8 @@ export const createRouter = () => {
         </Route>
 
         {/* Protected Routes */}
-        <Route path="/admin" element={<MainLayout />}>
-          {/* Dashboard routes */}
+        <Route path="/admin" element={<AdminLayout />}>
+          
         </Route>
       </>
     )

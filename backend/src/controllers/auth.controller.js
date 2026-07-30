@@ -31,7 +31,7 @@ export const loginAdmin = async (req, res) => {
             });
         }
 
-        const token = generateToken(admin.id);
+        const token = generateToken(id);
 
         return res.status(200).json({
             success: true,
@@ -40,6 +40,7 @@ export const loginAdmin = async (req, res) => {
                 id: admin.id,
                 name: admin.name,
                 email: admin.email,
+                role: admin.role
             },
         });
     } catch (error) {
