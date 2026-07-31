@@ -15,7 +15,7 @@ export const verifyAdmin = (req, res, next) => {
 
     const decoded = jwt.verify(token,process.env.JWT_SECRET);
 
-    const user = await prisma.user.findUnique({ 
+    const user =  prisma.user.findUnique({ 
       where: {
          id: decoded.id
       },

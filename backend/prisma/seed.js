@@ -1,33 +1,35 @@
 import bcrypt from "bcrypt";
 import prisma from "../src/db/db.js";
 
-
-
 async function main() {
-    const existingAdmin = await prisma.admin.findUnique({
-        where: {
-            email: "admin@gmail.com",
-        },
-    });
+  const existingUser = await prisma.user.findUnique({
+    where: {
+      email: "admin@gmail.com",
+    },
+  });
 
-    if (existingAdmin) {
-        console.log("Admin Alreay exists");
-        return
-    }
+  if (existingUser) {
+    console.log("Super Admin already exists");
+    return;
+  }
 
-    const hashedPassword = await bcrypt.hash("Admin@1234", 10);
+  const hashedPassword = await bcrypt.hash("Admin@1234", 10);
 
-    await prisma.admin.create({
-        data: {
-            name: "azzunique",
-            email: "admin@gmail.com",
-            password: hashedPassword,
-        },
-    }),
+  await prisma.user.create({
+    data: {
+      name: "Super Admin",
+      email: "admin@gmail.com",
+      password: hashedPassword,
+      role: "SUPER_ADMIN",
+      isActive: true,
+    },
+  });
 
-        console.log("Admin created successfully");
+  console.log("Super Admin created successfully");
 }
 
-main().catch(console.error).finally(async () => {
+main()
+  .catch(console.error)
+  .finally(async () => {
     await prisma.$disconnect();
-});
+  });
