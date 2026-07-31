@@ -22,18 +22,43 @@ model User {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  blogs     Blog[]
 }
 
 model Blog {
-  id         String   @id @default(uuid())
-  title      String
-  slug       String   @unique
-  excerpt    String?  @db.Text
-  content    String   @db.LongText
-  coverImage String?
-  published  Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id String @id @default(cuid())
 
-  @@map("blogs")
+  title            String
+  slug             String        @unique
+  shortDescription String
+  content          String        @db.LongText
+  featuredImage    String?
+  author           User?         @relation(fields: [authorId], references: [id])
+  authorId         String?
+  categoryId       String?
+  category         BlogCategory? @relation(fields: [categoryId], references: [id])
+  status           BlogStatus    @default(DRAFT)
+  isFeatured       Boolean       @default(false)
+  views            Int           @default(0)
+  seoTitle         String?
+  seoDescription   String?
+  seoKeywords      String?
+  publishedAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+}
+
+model BlogCategory {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  blogs       Blog[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

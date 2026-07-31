@@ -37,7 +37,7 @@ export const loginAdmin = async (req, res) => {
       success: true,
       message: "Login Successfull",
       token,
-      admin: {
+      user: {
         id: user.id,
         name: user.name,
         email: user.email,

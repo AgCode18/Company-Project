@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js"
 import adminRoutes from "./routes/admin.routes.js"
 import blogRoutes from "./routes/blog.routes.js"
+import categoryRoutes from "./routes/category.routes.js"
 
 const app = express();
 
@@ -16,7 +17,8 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes); 
-app.use("/api/", blogRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/blog-categories", categoryRoutes);
 
 
 

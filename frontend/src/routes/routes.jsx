@@ -17,7 +17,7 @@ import WWD from "../pages/WWD.jsx";
 import AdminLayout from "../admin/layouts/AdminLayout.jsx";
 import ProtectedRoute from "../admin/routes/ProtectedRoute.jsx";
 import Login from "../admin/pages/auth/Login.jsx";
-import Dashboard from "../admin/pages/Dashboard.jsx";
+import Dashboard from "../admin/pages/dashboard/Dashboard.jsx";
 
 export const createRouter = () => {
   return createBrowserRouter(

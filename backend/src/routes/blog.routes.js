@@ -5,12 +5,15 @@ import { verifyAdmin } from "../middleware/auth.middleware.js"
 const router = express.Router()
 
 
-router.post("/blog", verifyAdmin, createBlog)
-router.get("/getblogs", getBlogs)
-router.get("/:id", getBlog)
-router.put("/:id", verifyAdmin, updateBlog)
-router.delete("/:id", verifyAdmin, deleteBlog)
+router.post("/", verifyAdmin, createBlog);
 
+router.get("/", getBlogs);
+
+router.get("/:id", getBlog);
+
+router.put("/:id", verifyAdmin, updateBlog);
+
+router.delete("/:id", verifyAdmin, deleteBlog);
 
 
 export default router;
