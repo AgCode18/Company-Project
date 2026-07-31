@@ -21,6 +21,4 @@ app.use("/api/blogs", blogRoutes);
 app.use("/api/blog-categories", categoryRoutes);
 
 
-
-
 export default app;
