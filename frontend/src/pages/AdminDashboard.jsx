@@ -3,7 +3,9 @@ import React from 'react'
 function AdminDashboard() {
   return (
     <>
-      sec
+      <h1>
+        This is admin Dashboard of azzunique website
+      </h1>
     </>
   )
 }
