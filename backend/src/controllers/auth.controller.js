@@ -1,53 +1,54 @@
 import prisma from "../db/db.js";
 import { generateToken } from "../utils/generateToken.js";
+import bcrypt from "bcrypt";
 
-import bcrypt from "bcrypt"
 export const loginAdmin = async (req, res) => {
-    try {
-        const { email, password } = req.body;
+  try {
+    const { email, password } = req.body;
 
-        const admin = await prisma.admin.findUnique({
-            where: {
-                email,
-            },
-        });
+    const user = await prisma.user.findUnique({ where: { email } });
 
-        if (!admin) {
-            return res.status(401).json({
-                success: false,
-                message: "Admin created successfully",
-            });
-        }
-
-        const isMatch = await bcrypt.compare(
-            password,
-            admin.password
-        );
-
-        if (!isMatch) {
-            return res.status(401).json({
-                success: false,
-                message: "Password is incorrect"
-            });
-        }
-
-        const token = generateToken(id);
-
-        return res.status(200).json({
-            success: true,
-            token,
-            admin: {
-                id: admin.id,
-                name: admin.name,
-                email: admin.email,
-                role: admin.role
-            },
-        });
-    } catch (error) {
-        console.error(error);
-        return res.status(500).json({
-            success: false,
-            message: error.message
-        });
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid email and password",
+      });
     }
+
+    if (!user.isActive) {
+      return res.status(401).json({
+        success: false,
+        message: "Account has been deactivated",
+      });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Password is incorrect",
+      });
+    }
+
+    const token = generateToken(user);
+
+    return res.status(200).json({
+      success: true,
+      message: "Login Successfull",
+      token,
+      admin: {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 };
