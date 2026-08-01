@@ -62,3 +62,78 @@ model BlogCategory {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }
+
+enum JobStatus {
+  DRAFT
+  PUBLISHED
+  CLOSED
+}
+
+enum EmploymentType {
+  FULL_TIME
+  INTERNSHIP
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWED
+  SHORTLISTED
+  INTERVIEW
+  HIRED
+  REJECTED
+}
+
+model JobApplication {
+  id String @id @default(cuid())
+  fullName String
+  email String
+  phone String
+  resume String
+  coverletter String?
+  status ApplicationStatus @default(PENDING)
+  jobId String
+  job Job @relation(fields: [jobId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Job {
+  id String @id @default(cuid())
+
+  title String
+  slug  String @unique
+
+  description String @db.LongText
+
+  location String
+
+  experience String
+
+  salary String?
+
+  vacancies Int @default(1)
+
+  employmentType EmploymentType
+
+  categoryId String
+
+  category JobCategory @relation(fields: [categoryId], references: [id])
+
+  status JobStatus @default(DRAFT)
+
+  lastDate DateTime
+
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+
+  applications JobApplication[]
+}
+
+model JobCategory {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  jobs      Job[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

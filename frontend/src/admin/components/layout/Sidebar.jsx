@@ -28,6 +28,11 @@ const menuItems = [
     icon: FileText,
   },
   {
+    title: "Blog Categories",
+    icon: FolderOpen,
+    path: "/admin/blog-categories",
+  },
+  {
     title: "Jobs",
     path: "/admin/jobs",
     icon: BriefcaseBusiness,
@@ -71,9 +76,7 @@ export default function Sidebar() {
               to={item.path}
               className={({ isActive }) =>
                 `flex items-center gap-3 rounded-lg px-4 py-3 transition ${
-                  isActive
-                    ? "bg-blue-600"
-                    : "hover:bg-slate-800"
+                  isActive ? "bg-blue-600" : "hover:bg-slate-800"
                 }`
               }
             >

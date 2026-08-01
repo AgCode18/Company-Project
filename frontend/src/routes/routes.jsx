@@ -4,12 +4,12 @@ import {
   Route,
 } from "react-router-dom";
 
-import PublicLayout from "../layouts/PublicLayout";
-import MainLayout from "../layouts/MainLayout";
-import Home from "../pages/Home";
+import PublicLayout from "../layouts/PublicLayout.jsx";
+import MainLayout from "../layouts/MainLayout.jsx";
+import Home from "../pages/Home.jsx";
 import Services from "../pages/Services.jsx";
-import About from "../pages/About";
-import Blog from "../pages/Blog";
+import About from "../pages/About.jsx";
+import Blog from "../pages/Blog.jsx";
 import Contactus from "../pages/Contactus.jsx";
 import Pricing from "../pages/Pricing.jsx";
 import Career from "../pages/Career.jsx";
@@ -18,9 +18,11 @@ import AdminLayout from "../admin/layouts/AdminLayout.jsx";
 import ProtectedRoute from "../admin/routes/ProtectedRoute.jsx";
 import Login from "../admin/pages/auth/Login.jsx";
 import Dashboard from "../admin/pages/dashboard/Dashboard.jsx";
-import BlogList from "../admin/pages/blogs/BlogList.jsx";
+// import BlogList from "../admin/pages/blogs/BlogList.jsx";
 import CategoryList from "../admin/pages/blogCategories/CategoryList.jsx";
 import EditBlog from "../admin/pages/blogs/EditBlog.jsx";
+import BlogList from "../pages/Blog/BlogList.jsx"
+import BlogDetails from "../pages/Blog/BlogDetails.jsx";
 
 export const createRouter = () => {
   return createBrowserRouter(
@@ -44,11 +46,13 @@ export const createRouter = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
-            <Route path="blogs" element={<BlogList />} />
+            {/* <Route path="blogs" element={<BlogList />} /> */}  
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="blog-categories" element={<CategoryList />} />
             <Route path="blogs/edit/:id" element={<EditBlog />} />
+            <Route path="/blog" element={<BlogList />} />
+            <Route path="/blog/:slug" element={<BlogDetails />} />
           </Route>
         </Route>
       </>,
