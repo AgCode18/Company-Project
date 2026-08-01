@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getBlogs } from "../../../services/blog.service";
 import DataTable from "../../DataTable/DataTable";
+import ConfirmModal from "../../components/ui/ConfirmModal";
 
 export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
@@ -167,7 +168,13 @@ export default function BlogList() {
                     Edit
                   </button>
 
-                  <button className="rounded bg-red-500 px-3 py-1 text-white">
+                  <button
+                    onClick={() => {
+                      setSelectedBlog(blog);
+                      setDeleteModal(true);
+                    }}
+                    className="rounded bg-red-500 px-3 py-1 text-white"
+                  >
                     Delete
                   </button>
                 </td>
@@ -180,6 +187,18 @@ export default function BlogList() {
           <div className="p-8 text-center text-gray-500">No blogs found.</div>
         )}
       </div>
+
+      <ConfirmModal
+        isOpen={deleteModal}
+        title="Delete Blog"
+        message={`Are you sure you want to delete "${selectedBlog?.title}"? This action cannot be undone.`}
+        loading={deleting}
+        onCancel={() => {
+          setDeleteModal(false);
+          setSelectedBlog(null);
+        }}
+        onConfirm={handleDelete}
+      />
     </div>
   );
 }
