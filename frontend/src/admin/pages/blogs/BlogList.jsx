@@ -6,6 +6,34 @@ export default function BlogList() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [deleteModal, setDeleteModal] = useState(false);
+
+  const [selectedBlog, setSelectedBlog] = useState(null);
+
+  const [deleting, setDeleting] = useState(false);
+
+  const handleDelete = async () => {
+    if (!selectedBlog) return;
+
+    try {
+      setDeleting(true);
+
+      await deleteBlog(selectedBlog.id);
+
+      toast.success("Blog deleted successfully");
+
+      fetchBlogs();
+
+      setDeleteModal(false);
+
+      setSelectedBlog(null);
+    } catch (error) {
+      toast.error("Failed to delete blog");
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   const columns = [
     {
       key: "featuredImage",
