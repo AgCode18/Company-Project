@@ -1,10 +1,27 @@
 import { Router } from "express";
-import categoryRoutes from "../../routes/category.routes.js"
+import { verifyAdmin } from "../../middleware/auth.middleware.js";
+import upload from "../../utils/multer.js";
 
-const router = Router()
+import {
+    createBlog,
+    getBlogs,
+    getBlogById,
+    updateBlog,
+    deleteBlog,
+} from "./blog.controller.js";
 
-router.use("/", blogRoutes);
+const router = Router();
 
-router.use("/categories", categoryRoutes)
+router.get("/", verifyAdmin, getBlogs);
+
+router.post("/", verifyAdmin, upload.single("featuredImage"), createBlog);
+
+router.get("/:id", verifyAdmin, getBlogById);
+
+router.post("/", verifyAdmin, createBlog);
+
+router.put("/:id", verifyAdmin, updateBlog);
+
+router.delete("/:id", verifyAdmin, deleteBlog);
 
 export default router;

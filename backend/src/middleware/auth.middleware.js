@@ -5,7 +5,7 @@ export const verifyAdmin = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader.startsWith("Bearer ")) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({
         success: false,
         message: "Invalid authorization header",
@@ -14,11 +14,11 @@ export const verifyAdmin = async (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
 
-    const decoded = jwt.verify(token,process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    const user = await  prisma.user.findUnique({ 
+    const user = await prisma.user.findUnique({
       where: {
-         id: decoded.id
+        id: decoded.id,
       },
 
       select: {
@@ -26,18 +26,18 @@ export const verifyAdmin = async (req, res, next) => {
         name: true,
         email: true,
         role: true,
-        isActive: true
-      }
+        isActive: true,
+      },
+    });
+
+    if (!user || !user.isActive) {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid user",
       });
+    }
 
-      if (!user || !user.isActive) {
-        return res.status(401).json({
-          success: false,
-          message: "Invalid user"
-        })
-      }
-
-req.user = user;
+    req.user = user;
     next();
   } catch (error) {
     return res.status(401).json({

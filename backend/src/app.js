@@ -5,6 +5,8 @@ import authRoutes from "./routes/auth.routes.js"
 import adminRoutes from "./routes/admin.routes.js"
 import blogRoutes from "./routes/blog.routes.js"
 import categoryRoutes from "./routes/category.routes.js"
+import path from "path";
+
 
 const app = express();
 
@@ -19,6 +21,8 @@ app.use("/api/auth", authRoutes);
 app.use("/api/admin", adminRoutes); 
 app.use("/api/blogs", blogRoutes);
 app.use("/api/blog-categories", categoryRoutes);
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))
+);
 
 
 export default app;
