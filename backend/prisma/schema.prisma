@@ -84,16 +84,24 @@ enum ApplicationStatus {
 }
 
 model JobApplication {
-  id String @id @default(cuid())
-  fullName String
-  email String
-  phone String
-  resume String
-  coverletter String?
-  status ApplicationStatus @default(PENDING)
-  jobId String
-  job Job @relation(fields: [jobId], references: [id])
-  createdAt DateTime @default(now())
+  id              String            @id @default(cuid())
+  fullName        String
+  email           String
+  phone           String
+  resume          String
+  linkedinUrl     String?
+  portfolioUrl    String?
+  currentCompany  String?
+  currentCTC      String?
+  expectedCTC     String?
+  noticePeriod    String?
+  yearsExperience String?
+  city            String?
+  coverletter     String?
+  status          ApplicationStatus @default(PENDING)
+  jobId           String
+  job             Job               @relation(fields: [jobId], references: [id])
+  createdAt       DateTime          @default(now())
 }
 
 model Job {
