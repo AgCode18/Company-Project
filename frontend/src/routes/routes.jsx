@@ -21,7 +21,7 @@ import Dashboard from "../admin/pages/dashboard/Dashboard.jsx";
 // import BlogList from "../admin/pages/blogs/BlogList.jsx";
 import CategoryList from "../admin/pages/blogCategories/CategoryList.jsx";
 import EditBlog from "../admin/pages/blogs/EditBlog.jsx";
-import BlogList from "../pages/Blog/BlogList.jsx"
+import BlogList from "../pages/Blog/BlogList.jsx";
 import BlogDetails from "../pages/Blog/BlogDetails.jsx";
 
 export const createRouter = () => {
@@ -46,13 +46,16 @@ export const createRouter = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
-            {/* <Route path="blogs" element={<BlogList />} /> */}  
+            {/* <Route path="blogs" element={<BlogList />} /> */}
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="blog-categories" element={<CategoryList />} />
             <Route path="blogs/edit/:id" element={<EditBlog />} />
             <Route path="/blog" element={<BlogList />} />
             <Route path="/blog/:slug" element={<BlogDetails />} />
+            <Route path="/admin/jobs" element={<JobList />} />
+            <Route path="/admin/jobs/create" element={<AddJob />} />
+            <Route path="/admin/jobs/edit/:id" element={<EditJob />} />
           </Route>
         </Route>
       </>,
