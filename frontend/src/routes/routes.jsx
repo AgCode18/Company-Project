@@ -18,6 +18,7 @@ import AdminLayout from "../admin/layouts/AdminLayout.jsx";
 import ProtectedRoute from "../admin/routes/ProtectedRoute.jsx";
 import Login from "../admin/pages/auth/Login.jsx";
 import Dashboard from "../admin/pages/dashboard/Dashboard.jsx";
+import BlogList from "../admin/pages/blogs/BlogList.jsx";
 
 export const createRouter = () => {
   return createBrowserRouter(
@@ -41,6 +42,7 @@ export const createRouter = () => {
 
         <Route element={<ProtectedRoute />}>
           <Route path="/admin" element={<AdminLayout />}>
+          <Route path="blogs" element={<BlogList />} />
             <Route index element={<Dashboard />} />
             <Route path="dashboard" element={<Dashboard />} />
           </Route>
