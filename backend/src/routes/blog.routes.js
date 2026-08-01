@@ -17,5 +17,3 @@ router.delete("/:id", verifyAdmin, deleteBlog);
 
 
 export default router;
-
-
