@@ -1,3 +1,5 @@
+// Prisma db connection 
+
 import "dotenv/config";
 
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
