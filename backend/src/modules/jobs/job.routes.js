@@ -1,6 +1,6 @@
 import express from "express";
 
-import { verifyAdmin } from "../../middlewares/auth.middleware.js";
+import verifyAdmin  from "../../middleware/auth.middleware.js";
 
 import {
   createJob,
@@ -10,7 +10,7 @@ import {
   deleteJob,
   getPublicJobs,
   getPublicJobBySlug,
-} from "./job.controller.js";
+} from "../jobs/job.controllers.js";
 
 const router = express.Router();
 

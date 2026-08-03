@@ -5,7 +5,7 @@ const validatedData = createJobSchema.parse(req.body);
 
 const job = await jobService.createJob(validatedData);
 
-const validatedData = updateJobSchema.parse(req.body);
+
 
 await jobService.updateJob(req.params.id, validatedData);
 // ==============================

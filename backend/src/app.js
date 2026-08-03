@@ -7,6 +7,9 @@ import blogRoutes from "./routes/blog.routes.js"
 import categoryRoutes from "./routes/category.routes.js"
 import path from "path";
 
+import applicationRoutes from "./modules/application/application.router.js";
+
+
 import jobRoutes from "./modules/jobs/job.routes.js";
 
 
@@ -24,8 +27,7 @@ app.use("/api/admin", adminRoutes);
 app.use("/api/blogs", blogRoutes);
 app.use("/api/blog-categories", categoryRoutes);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
-app.use("/api/jobs", jobRoutes);    
-app.use("/applications", applicationRoutes);
-
+app.use("/api/jobs", jobRoutes);
+app.use("/api/applications", applicationRoutes);
 
 export default app;

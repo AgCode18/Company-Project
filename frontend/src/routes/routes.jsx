@@ -23,6 +23,8 @@ import CategoryList from "../admin/pages/blogCategories/CategoryList.jsx";
 import EditBlog from "../admin/pages/blogs/EditBlog.jsx";
 import BlogList from "../pages/Blog/BlogList.jsx";
 import BlogDetails from "../pages/Blog/BlogDetails.jsx";
+import AddJob from "../admin/pages/jobs/AddJob.jsx";
+import EditJob from "../admin/pages/jobs/EditJob.jsx";
 
 export const createRouter = () => {
   return createBrowserRouter(
@@ -56,6 +58,12 @@ export const createRouter = () => {
             <Route path="/admin/jobs" element={<JobList />} />
             <Route path="/admin/jobs/create" element={<AddJob />} />
             <Route path="/admin/jobs/edit/:id" element={<EditJob />} />
+            <Route path="/admin/jobs/create" element={<AddJob />} />
+            <Route path="/admin/jobs/edit/:id" element={<EditJob />} />
+            <Route path="/admin/applications" element={<ApplicationList />} />
+
+            <Route path="/admin/applications/:id" element={<ApplicationDetails />}
+            />
           </Route>
         </Route>
       </>,
