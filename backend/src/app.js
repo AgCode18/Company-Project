@@ -11,7 +11,7 @@ import jobRoutes from "./modules/jobs/job.routes.js";
 import dashboardRoutes from "../src/modules/dashboard/dashboard.router.js";
 import contactRoutes from "./modules/contact/contact.router.js";
 import settingsRoutes from "./modules/settings/settings.router.js";
-
+import homepageRoutes from "./modules/homepage/homepage.router.js";
 const app = express();
 
 app.use(cors({ origin: true, credentials: true }));
@@ -35,5 +35,6 @@ app.use(
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/contact", contactRoutes);
 app.use("/api/settings", settingsRoutes);
+app.use("/api/homepage", homepageRoutes);
 
 export default app;
