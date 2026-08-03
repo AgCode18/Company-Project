@@ -72,7 +72,7 @@ export default function BlogDetails() {
 
           <div className="lg:col-span-2">
             <img
-              src={blog.featuredImage}
+              src={`${import.meta.env.VITE_API_URL}${blog.featuredImage}`}
               alt={blog.title}
               className="mb-8 h-[450px] w-full rounded-2xl object-cover"
             />
@@ -84,9 +84,12 @@ export default function BlogDetails() {
             <h1 className="mt-6 text-5xl font-bold">{blog.title}</h1>
 
             <div className="mt-5 flex gap-6 text-gray-500">
-              <span>{blog.author}</span>
-
-              <span>{new Date(blog.createdAt).toLocaleDateString()}</span>
+              <span>{blog.author?.name}</span>
+              <span>
+                {new Date(
+                  blog.publishedAt || blog.createdAt,
+                ).toLocaleDateString()}
+              </span>{" "}
             </div>
 
             <div
@@ -97,7 +100,7 @@ export default function BlogDetails() {
             />
 
             {/* Related */}
-
+            {relatedBlogs.length > 0 && (
             <div className="mt-20">
               <h2 className="mb-8 text-3xl font-bold">Related Blogs</h2>
 
@@ -106,8 +109,8 @@ export default function BlogDetails() {
                   <BlogCard key={item.id} blog={item} />
                 ))}
               </div>
-            </div>
-          </div>
+            </div> )};
+          </div> 
 
           {/* Sidebar */}
 

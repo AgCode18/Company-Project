@@ -1,48 +1,84 @@
-import {
-    FileText,
-    BriefcaseBusiness,
-    Users,
-    Eye,
-} from "lucide-react";
+import { useEffect, useState } from "react";
 
-import StatsCard from "../../components/layout/StatsCard";
+import { FileText, Briefcase, Users, FolderOpen } from "lucide-react";
+
+import StatsCard from "./components/StatsCard";
+
+import { getDashboard } from "../../../services/dashboard.service";
+import RecentBlogs from "./components/RecentBlogs";
+import RecentJobs from "./components/RecentJobs";
+import RecentApplications from "./components/RecentApplications";
 
 export default function Dashboard() {
-    return (
-        <div>
+  const [dashboard, setDashboard] = useState(null);
 
-            <h1 className="mb-8 text-3xl font-bold">
-                Dashboard
-            </h1>
+  const [loading, setLoading] = useState(true);
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+  useEffect(() => {
+    loadDashboard();
+  }, []);
 
-                <StatsCard
-                    title="Blogs"
-                    value="0"
-                    icon={<FileText />}
-                />
+  const loadDashboard = async () => {
+    try {
+      const { data } = await getDashboard();
 
-                <StatsCard
-                    title="Jobs"
-                    value="0"
-                    icon={<BriefcaseBusiness />}
-                />
+      setDashboard(data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-                <StatsCard
-                    title="Applications"
-                    value="0"
-                    icon={<Users />}
-                />
+  if (loading) {
+    return <div className="p-6">Loading dashboard...</div>;
+  }
 
-                <StatsCard
-                    title="Visitors"
-                    value="0"
-                    icon={<Eye />}
-                />
+  return (
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold">Dashboard</h1>
 
-            </div>
+        <p className="text-gray-500">Welcome to Admin Panel</p>
+      </div>
 
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+        <StatsCard
+          title="Blogs"
+          value={dashboard.stats.totalBlogs}
+          icon={<FileText size={28} />}
+          color="bg-blue-500"
+        />
+
+        <StatsCard
+          title="Jobs"
+          value={dashboard.stats.totalJobs}
+          icon={<Briefcase size={28} />}
+          color="bg-green-500"
+        />
+
+        <StatsCard
+          title="Applications"
+          value={dashboard.stats.totalApplications}
+          icon={<Users size={28} />}
+          color="bg-purple-500"
+        />
+
+        <StatsCard
+          title="Categories"
+          value={dashboard.stats.totalCategories}
+          icon={<FolderOpen size={28} />}
+          color="bg-orange-500"
+        />
+
+        <div className="grid gap-8 xl:grid-cols-2">
+          <RecentBlogs blogs={dashboard.recentBlogs} />
+
+          <RecentJobs jobs={dashboard.recentJobs} />
         </div>
-    );
+
+        <RecentApplications applications={dashboard.recentApplications} />
+      </div>
+    </div>
+  );
 }

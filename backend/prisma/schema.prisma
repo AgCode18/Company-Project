@@ -48,6 +48,54 @@ model Blog {
   updatedAt        DateTime      @updatedAt
 }
 
+model WebsiteSetting {
+  id             String   @id @default(cuid())
+  companyName    String
+  tagline        String?
+  email          String?
+  phone          String?
+  whatsapp       String?
+  address        String?  @db.LongText
+  facebook       String?
+  instagram      String?
+  linkedin       String?
+  twitter        String?
+  youtube        String?
+  logo           String?
+  favicon        String?
+  footerText     String?  @db.LongText
+  seoTitle       String?
+  seoDescription String?  @db.LongText
+  seoKeywords    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model HomepageSetting {
+  id String @id @default(cuid())
+
+  // Hero Section
+  heroTitle            String
+  heroSubtitle         String?   @db.LongText
+  heroButtonText       String?
+  heroButtonLink       String?
+  heroBackgroundImage  String?
+
+  // About Preview
+  aboutTitle           String?
+  aboutDescription     String?   @db.LongText
+  aboutImage           String?
+
+  // CTA
+  ctaTitle             String?
+  ctaDescription       String?   @db.LongText
+  ctaButtonText        String?
+  ctaButtonLink        String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 enum BlogStatus {
   DRAFT
   PUBLISHED
@@ -104,37 +152,35 @@ model JobApplication {
   createdAt       DateTime          @default(now())
 }
 
-model Job {
-  id String @id @default(cuid())
-
-  title String
-  slug  String @unique
-
-  description String @db.LongText
-
-  location String
-
-  experience String
-
-  salary String?
-
-  vacancies Int @default(1)
-
-  employmentType EmploymentType
-
-  categoryId String
-
-  category JobCategory @relation(fields: [categoryId], references: [id])
-
-  status JobStatus @default(DRAFT)
-
-  lastDate DateTime
-
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String   @db.LongText
+  isRead    Boolean  @default(false)
   createdAt DateTime @default(now())
-
   updatedAt DateTime @updatedAt
+}
 
-  applications JobApplication[]
+model Job {
+  id             String           @id @default(cuid())
+  title          String
+  slug           String           @unique
+  description    String           @db.LongText
+  location       String
+  experience     String
+  salary         String?
+  vacancies      Int              @default(1)
+  employmentType EmploymentType
+  categoryId     String
+  category       JobCategory      @relation(fields: [categoryId], references: [id])
+  status         JobStatus        @default(DRAFT)
+  lastDate       DateTime
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  applications   JobApplication[]
 }
 
 model JobCategory {

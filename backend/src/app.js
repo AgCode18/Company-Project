@@ -6,12 +6,11 @@ import adminRoutes from "./routes/admin.routes.js"
 import blogRoutes from "./routes/blog.routes.js"
 import categoryRoutes from "./routes/category.routes.js"
 import path from "path";
-
 import applicationRoutes from "./modules/application/application.router.js";
-
-
 import jobRoutes from "./modules/jobs/job.routes.js";
-
+import dashboardRoutes from "../src/modules/dashboard/dashboard.router.js";
+import contactRoutes from "./modules/contact/contact.router.js";
+import settingsRoutes from "./modules/settings/settings.router.js";
 
 const app = express();
 
@@ -33,5 +32,8 @@ app.use(
   "/uploads",
   express.static(path.join(process.cwd(), "uploads"))
 );
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/contact", contactRoutes);
+app.use("/api/settings", settingsRoutes);
 
 export default app;
