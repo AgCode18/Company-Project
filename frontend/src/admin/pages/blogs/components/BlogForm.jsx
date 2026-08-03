@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import BlogEditor from "./BlogEditor";
+import BlogEditor from "../../../../components/editor/BlogEditor.jsx";
 import SeoFields from "./SeoFields";
 import ImageUploader from "./ImageUploader";
 
@@ -39,10 +39,14 @@ export default function BlogForm({
       <div>
         <label className="mb-2 block font-medium">Short Description</label>
 
-        <textarea
-          rows={4}
-          {...register("shortDescription")}
-          className="w-full rounded-lg border p-3"
+        <BlogEditor
+          value={form.content}
+          onChange={(html) =>
+            setForm({
+              ...form,
+              content: html,
+            })
+          }
         />
       </div>
 

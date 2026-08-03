@@ -8,6 +8,7 @@ import {
 } from "./application.controller.js";
 
 import verifyAdmin from "../../middlewares/verifyAdmin.js";
+import { validateStatusUpdate } from "./application.validation.js";
 
 const router = Router();
 
@@ -22,6 +23,7 @@ router.get("/:id", verifyAdmin, getApplicationById);
 router.patch(
   "/:id/status",
   verifyAdmin,
+  validateStatusUpdate,
   updateApplicationStatus
 );
 

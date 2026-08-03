@@ -9,6 +9,7 @@ import {
   updateApplicationStatus,
   deleteApplication,
 } from "./application.controller.js";
+import { validateApplyJob } from "../applications/application.validation.js";
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ const router = express.Router();
 =========================== */
 
 // Apply for a job
-router.post("/:jobId/apply", upload.single("resume"), applyJob);
+router.post("/:jobId/apply", upload.single("resume"), validateApplyJob,applyJob);
 
 /* ===========================
    Admin Routes
