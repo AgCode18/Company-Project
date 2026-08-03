@@ -1,4 +1,5 @@
-import api from "../../services/api.js";
+import api from "./api.js";
+
 
 // Get all blogs
 export const getBlogs = (params) => api.get("/blogs", { params });

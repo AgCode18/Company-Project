@@ -1,4 +1,5 @@
-import api from "../../src/services/api.js";
+import api from "./api.js";
+
 
 /* ===========================
    Public

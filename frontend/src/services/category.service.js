@@ -1,4 +1,5 @@
-import api from "../services/api.js";
+import api from "./api.js";
+
 
 export const getCategories = (params) =>
   api.get("/blog-categories", { params });
