@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import BlogSidebar from "../../components/blog/BlogSidebar.jsx";
+import BlogCard from "../../components/blog/BlogCard.jsx";
+import { getBlogBySlug, getRelatedBlogs } from "../../services/blog.service.js";
+import { getCategories } from "../../services/category.service.js";
 
-import BlogSidebar from "../../components/blog/BlogSidebar";
-import BlogCard from "../../components/blog/BlogCard";
-
-import { getBlogBySlug, getRelatedBlogs } from "../../services/blog.service";
-
-import { getCategories } from "../../services/category.service";
 
 export default function BlogDetails() {
   const { slug } = useParams();
