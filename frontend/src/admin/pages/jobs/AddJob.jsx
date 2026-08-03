@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import JobForm from "./components/JobForm";
 
-import { createJob } from "../../../services/job.service";
+import { createJob } from "../../services/job.service.js";
 import { getCategories } from "../../../services/category.service";
 
 export default function AddJob() {

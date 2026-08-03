@@ -38,14 +38,12 @@ export const updateHomepage = async (req, res) => {
 
     // Hero Background Image
     if (req.files?.heroBackgroundImage?.length) {
-      data.heroBackgroundImage =
-        `/uploads/homepage/${req.files.heroBackgroundImage[0].filename}`;
+      data.heroBackgroundImage = `/uploads/homepage/${req.files.heroBackgroundImage[0].filename}`;
     }
 
     // About Image
     if (req.files?.aboutImage?.length) {
-      data.aboutImage =
-        `/uploads/homepage/${req.files.aboutImage[0].filename}`;
+      data.aboutImage = `/uploads/homepage/${req.files.aboutImage[0].filename}`;
     }
 
     const homepage = await homepageService.updateHomepage(data);

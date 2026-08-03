@@ -1,4 +1,4 @@
-import api from "../admin/services/api"
+import api from "./api"
 
 
 export const login = (data) => {

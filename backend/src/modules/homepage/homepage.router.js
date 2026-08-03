@@ -3,10 +3,7 @@ import { Router } from "express";
 import { verifyAdmin } from "../../middleware/auth.middleware.js";
 import upload from "../../utils/multer.js";
 
-import {
-  getHomepage,
-  updateHomepage,
-} from "./homepage.controller.js";
+import { getHomepage, updateHomepage } from "./homepage.controller.js";
 
 const router = Router();
 
@@ -15,11 +12,7 @@ const router = Router();
 =========================== */
 
 // Get Homepage Content
-router.get(
-  "/",
-  verifyAdmin,
-  getHomepage
-);
+router.get("/", verifyAdmin, getHomepage);
 
 // Update Homepage Content
 router.put(
@@ -35,7 +28,7 @@ router.put(
       maxCount: 1,
     },
   ]),
-  updateHomepage
+  updateHomepage,
 );
 
 export default router;

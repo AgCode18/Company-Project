@@ -3,9 +3,9 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import JobForm from "./components/JobForm";
 
-import { getJobById, updateJob } from "../../../services/job.service";
+import { getJobById, updateJob } from "../../../services/job.category.service.js";
 
-import { getCategories } from "../../../services/category.service";
+import { getCategories } from "../../../services/job.category.service.js";
 
 export default function EditJob() {
   const { id } = useParams();

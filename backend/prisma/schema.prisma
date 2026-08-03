@@ -75,22 +75,22 @@ model HomepageSetting {
   id String @id @default(cuid())
 
   // Hero Section
-  heroTitle            String
-  heroSubtitle         String?   @db.LongText
-  heroButtonText       String?
-  heroButtonLink       String?
-  heroBackgroundImage  String?
+  heroTitle           String
+  heroSubtitle        String? @db.LongText
+  heroButtonText      String?
+  heroButtonLink      String?
+  heroBackgroundImage String?
 
   // About Preview
-  aboutTitle           String?
-  aboutDescription     String?   @db.LongText
-  aboutImage           String?
+  aboutTitle       String?
+  aboutDescription String? @db.LongText
+  aboutImage       String?
 
   // CTA
-  ctaTitle             String?
-  ctaDescription       String?   @db.LongText
-  ctaButtonText        String?
-  ctaButtonLink        String?
+  ctaTitle       String?
+  ctaDescription String? @db.LongText
+  ctaButtonText  String?
+  ctaButtonLink  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -160,6 +160,17 @@ model Contact {
   subject   String?
   message   String   @db.LongText
   isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WhyChooseUs {
+  id String @id @default(cuid())
+  title       String
+  description String @db.LongText
+  icon String?
+  order Int @default(0)
+  isActive Boolean @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

@@ -1,4 +1,4 @@
-import api from "./api";
+c
 
 /* ===========================
    Admin
@@ -9,6 +9,7 @@ export const getApplications = (params) => {
     params,
   });
 };
+
 
 export const getApplicationById = (id) => {
   return api.get(`/applications/${id}`);
