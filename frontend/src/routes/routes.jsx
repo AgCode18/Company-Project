@@ -1,8 +1,4 @@
-import {
-  createBrowserRouter,
-  createRoutesFromElements,
-  Route,
-} from "react-router-dom";
+import { createBrowserRouter, createRoutesFromElements, Route } from "react-router-dom";
 
 import PublicLayout from "../layouts/PublicLayout.jsx";
 import MainLayout from "../layouts/MainLayout.jsx";
@@ -61,7 +57,6 @@ export const createRouter = () => {
             <Route path="/admin/jobs/create" element={<AddJob />} />
             <Route path="/admin/jobs/edit/:id" element={<EditJob />} />
             <Route path="/admin/applications" element={<ApplicationList />} />
-
             <Route path="/admin/applications/:id" element={<ApplicationDetails />}
             />
           </Route>
