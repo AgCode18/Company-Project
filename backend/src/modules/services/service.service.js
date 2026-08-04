@@ -37,13 +37,11 @@ export const getServices = async (query) => {
       {
         title: {
           contains: search,
-          mode: "insensitive",
         },
       },
       {
         shortDescription: {
           contains: search,
-          mode: "insensitive",
         },
       },
     ];
